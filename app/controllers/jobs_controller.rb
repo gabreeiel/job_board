@@ -6,6 +6,11 @@ class JobsController < ApplicationController
   def index
     @jobs = Job.all
   end
+  
+  #jobs premium
+  def premium
+    @jobs = Job.where(premium: true).all
+  end
 
   # GET /jobs/1
   # GET /jobs/1.json
