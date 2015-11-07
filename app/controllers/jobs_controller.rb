@@ -4,12 +4,14 @@ class JobsController < ApplicationController
   # GET /jobs
   # GET /jobs.json
   def index
-    @jobs = Job.all
+    @jobs = Job.most_recent.
+      paginate(page: params[:page], per_page: 5)
   end
   
   #jobs premium
   def premium
-    @jobs = Job.where(premium: true).all
+    @jobs = Job.where(premium: true).most_recent.
+      paginate(page: params[:page], per_page: 5)
   end
 
   # GET /jobs/1
